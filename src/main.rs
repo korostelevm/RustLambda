@@ -12,6 +12,7 @@ use std::error::Error;
 use std::fmt::Debug;
 // use serde_json::json;
 // use serde_json::Result;
+use serde_json::json;
 
 
 // #[derive(Default)]
@@ -44,8 +45,15 @@ fn my_handler(e: serde_json::Value, c: lambda::Context) -> Result<serde_json::Va
     //     error!("Empty first name in request {}", c.aws_request_id);
     //     return Err(c.new_error("Empty first name"));
     // }
+    let res = json!({
+        "statusCode": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": e.to_string()
+    });
 
-    Ok(e)
+    Ok(res)
     // Ok(CustomOutput {
     //     message: format!("Hello, {}!", "sadf"),
     //     // message: format!("Hello, {}!", e.first_name),

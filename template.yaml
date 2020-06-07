@@ -29,7 +29,7 @@ Resources:
       CodeUri: .
       # CodeUri: ./service
       Runtime: provided
-      Handler: bootstrap.is.real.handler
+      Handler: bootstrap
       # Tracing: Active
       MemorySize: 1024
       # Timeout: 30
