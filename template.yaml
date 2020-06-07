@@ -22,14 +22,17 @@ Resources:
 
   ServiceApiFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+        BuildMethod: makefile
     Properties:
       FunctionName: HelloRust
-      CodeUri: ./service
+      CodeUri: .
+      # CodeUri: ./service
       Runtime: provided
       Handler: bootstrap.is.real.handler
-      Tracing: Active
+      # Tracing: Active
       MemorySize: 1024
-      Timeout: 30
+      # Timeout: 30
       Policies:
         - Statement:
             [{

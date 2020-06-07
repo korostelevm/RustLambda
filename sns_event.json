@@ -1,4 +1,5 @@
 {
+  "firstName":"asdf",
   "Records": [
     {
       "EventSource": "aws:sns",
