@@ -14,6 +14,7 @@ rustup-init
 follow
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html
 https://aws.amazon.com/blogs/opensource/rust-runtime-for-aws-lambda/
+https://docs.serde.rs/serde_json/
 
 must have  SAM CLI, version 0.52.0
 ```
