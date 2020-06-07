@@ -7,14 +7,20 @@ extern crate log;
 extern crate simple_logger;
 
 use lambda::error::HandlerError;
-
+use std::fmt::{self, Formatter, Display};
 use std::error::Error;
+use std::fmt::Debug;
+// use serde_json::json;
+// use serde_json::Result;
 
-#[derive(Deserialize, Clone)]
-struct CustomEvent {
-    #[serde(rename = "firstName")]
-    first_name: String,
-}
+
+// #[derive(Default)]
+#[derive(Deserialize, Clone, Debug)]
+struct CustomEvent {}
+// struct CustomEvent {
+//     #[serde(rename = "firstName")]
+//     first_name: String,
+// }
 
 #[derive(Serialize, Clone)]
 struct CustomOutput {
@@ -28,13 +34,20 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn my_handler(e: CustomEvent, c: lambda::Context) -> Result<CustomOutput, HandlerError> {
-    if e.first_name == "" {
-        error!("Empty first name in request {}", c.aws_request_id);
-        return Err(c.new_error("Empty first name"));
-    }
+fn my_handler(e: serde_json::Value, c: lambda::Context) -> Result<serde_json::Value, HandlerError> {
+    // let j = serde_json::to_string(&e)?;
 
-    Ok(CustomOutput {
-        message: format!("Hello, {}!", e.first_name),
-    })
+    // info!("{:#?}", serde_json::to_string(&e)?);
+    info!("{:#?}", e);
+    // info!("{:?}", e);
+    // if e.first_name == "" {
+    //     error!("Empty first name in request {}", c.aws_request_id);
+    //     return Err(c.new_error("Empty first name"));
+    // }
+
+    Ok(e)
+    // Ok(CustomOutput {
+    //     message: format!("Hello, {}!", "sadf"),
+    //     // message: format!("Hello, {}!", e.first_name),
+    // })
 }

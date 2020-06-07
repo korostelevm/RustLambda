@@ -29,6 +29,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 
 fn my_handler(e: CustomEvent, c: lambda::Context) -> Result<CustomOutput, HandlerError> {
+    info!("asdf");
     if e.first_name == "" {
         error!("Empty first name in request {}", c.aws_request_id);
         return Err(c.new_error("Empty first name"));
